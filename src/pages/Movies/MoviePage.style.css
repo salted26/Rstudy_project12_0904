@@ -26,9 +26,3 @@
   justify-content: center;
   align-items: center;
 }
-
-.movie-card-container > .row > div {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
