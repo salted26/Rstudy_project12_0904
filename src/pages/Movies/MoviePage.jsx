@@ -47,7 +47,7 @@ const MoviePage = () => {
                         <Row>
                             {data?.results.map((item, index)=> (
                                 <Col lg={3} key={index}>
-                                    {item !== undefined ? <MovieCard movie={item} setMovieData={setMovieData}/> : "검색결과가 없습니다."}
+                                    <MovieCard movie={item} setMovieData={setMovieData}/>
                                 </Col>
                             ))}
                         </Row>
