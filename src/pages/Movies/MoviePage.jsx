@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import './MoviePage.style.css'
 import {Alert, Col, Container, Row, Spinner} from "react-bootstrap";
 import {useSearchMovieQuery} from "../../hooks/useSearchMovie";
@@ -17,9 +17,10 @@ import MoviePagination from "../../common/MoviePagination/MoviePagination";
 const MoviePage = () => {
 
     const [ query ] = useSearchParams();
-    const [page, setPage] = useState(1);
-    const keyword = query.get("q")
+    const [ page, setPage] = useState(1);
+    const [ movieData, setMovieData] = useState(null);
 
+    const keyword = query.get("q")
     const { data, isLoading, isError, error } = useSearchMovieQuery({keyword, page});
 
     if(isLoading){
@@ -35,26 +36,39 @@ const MoviePage = () => {
     if (isError) {
         return (<div> <Alert varian="danger">{error.message}</Alert> </div>)
     }
-    return (
-        <Container>
-            <Row>
-                <Col lg={4} xs={12} style={{color:'white'}}>필터</Col>
-                <Col lg={8} xs={12}>
-                    <Row>
-                        {data !== undefined 
-                            ? {data?.results.map((item, index)=> (
-                                <Col key={index} lg={4} xs={12}>
-                                    <MovieCard movie={item}/>
+
+    console.log(data.results.length);
+
+    if(data.results.length !== 0) {
+        return (
+            <Container className="movie-page-container">
+                <Row>
+                    <Col lg={12}>
+                        <Row>
+                            {data?.results.map((item, index)=> (
+                                <Col lg={3} key={index}>
+                                    {item !== undefined ? <MovieCard movie={item} setMovieData={setMovieData}/> : "검색결과가 없습니다."}
                                 </Col>
-                            ))} 
-                            : <Col lg={4} xs={12}>검색결과가 없습니다.</Col>
-                        }
-                    </Row>
-                    <MoviePagination data={data} setPage={setPage} page={page}/>
-                </Col>
-            </Row>
-        </Container>
-    );
+                            ))}
+                        </Row>
+                        <MoviePagination data={data} setPage={setPage} page={page}/>
+                    </Col>
+                </Row>
+            </Container>
+        );
+    } else {
+        return (
+            <Container className="movie-page-container">
+                <Row>
+                    <Col lg={12}>
+                        <Row>
+                            <div>검색결과가 없습니다.</div>
+                        </Row>
+                    </Col>
+                </Row>
+            </Container>
+        )
+    }
 };
 
 export default MoviePage;
