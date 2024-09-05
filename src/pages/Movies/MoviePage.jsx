@@ -62,7 +62,7 @@ const MoviePage = () => {
         );
     } else {
         return (
-            <Container className="noresults-container">
+            <Container className="movie-page-container">
                 <Row>
                     <Col lg={12}>
                         <Row>
