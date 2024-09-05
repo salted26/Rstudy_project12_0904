@@ -8,8 +8,8 @@
   color: white;
 }
 
-.item {
-  margin-bottom: 1rem;
+.movie-page-container > .row {
+  color: white;
 }
 
 .movie-card-container {
