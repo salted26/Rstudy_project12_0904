@@ -6,8 +6,6 @@
   max-width: 100vw;
 
   color: white;
-
-  text-align: center;
 }
 
 .movie-page-container > .row {
@@ -29,3 +27,8 @@
   align-items: center;
 }
 
+.movie-card-container > .row > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
