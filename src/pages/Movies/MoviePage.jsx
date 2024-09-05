@@ -41,11 +41,14 @@ const MoviePage = () => {
                 <Col lg={4} xs={12} style={{color:'white'}}>필터</Col>
                 <Col lg={8} xs={12}>
                     <Row>
-                        {data?.results.map((item, index)=> (
-                            <Col key={index} lg={4} xs={12}>
-                                <MovieCard movie={item}/>
-                            </Col>
-                        ))}
+                        {data !== undefined 
+                            ? {data?.results.map((item, index)=> (
+                                <Col key={index} lg={4} xs={12}>
+                                    <MovieCard movie={item}/>
+                                </Col>
+                            ))} 
+                            : <Col lg={4} xs={12}>검색결과가 없습니다.</Col>
+                        }
                     </Row>
                     <MoviePagination data={data} setPage={setPage} page={page}/>
                 </Col>
