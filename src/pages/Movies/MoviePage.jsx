@@ -62,7 +62,7 @@ const MoviePage = () => {
         );
     } else {
         return (
-            <Container className="movie-card-container">
+            <Container className="movie-page-container">
                 <Row>
                     <div>검색결과가 없습니다.</div>
                 </Row>
